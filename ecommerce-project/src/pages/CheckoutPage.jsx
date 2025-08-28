@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import "./checkout-header.css";
 import "./CheckoutPage.css";
 
-const CheckoutPage = () => {
+const CheckoutPage = ({ cart }) => {
   return (
     <>
       <title>Checkout</title>
