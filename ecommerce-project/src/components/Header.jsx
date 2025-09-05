@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({cart}) => {
   let totalQuantity = 0;
-  const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    axios.get("/api/cart-items?expand=product").then((response) => {
-      setCart(response.data);
-    });
-  }, []);
 
-  
+
+
 
   cart.forEach((cartItem) => {
     totalQuantity += cartItem.quantity;
   });
+
+
 
   return (
     <div className="header">

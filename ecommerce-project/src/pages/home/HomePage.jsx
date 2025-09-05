@@ -4,7 +4,7 @@ import "./HomePage.css";
 import Header from "../../components/Header";
 import ProductGrid from "./ProductGrid";
 
-const HomePage = ({ cart }) => {
+const HomePage = ({ cart, loadCart }) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     // axios.get("/api/products").then((response) => {
@@ -24,7 +24,7 @@ const HomePage = ({ cart }) => {
       <Header cart={cart} />
 
       <div className="home-page">
-        <ProductGrid products={products} />
+        <ProductGrid products={products} loadCart={loadCart} />
       </div>
     </>
   );
