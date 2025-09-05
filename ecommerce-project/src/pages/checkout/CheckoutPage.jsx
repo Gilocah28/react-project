@@ -64,7 +64,7 @@ const CheckoutPage = ({ cart, loadCart }) => {
             cart={cart}
             loadCart={loadCart}
           />
-          <PaymentSammary paymentSummary={paymentSummary} />
+          <PaymentSammary paymentSummary={paymentSummary} loadCart={loadCart} />
         </div>
       </div>
     </>
