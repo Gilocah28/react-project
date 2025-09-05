@@ -4,25 +4,30 @@ import OrderSummary from "./OrderSummary";
 import { Link } from "react-router";
 import "./checkout-header.css";
 import "./CheckoutPage.css";
-import { formatMoney } from "../../utils/money";
 import { PaymentSammary } from "./PaymentSammary";
 
-const CheckoutPage = ({ cart }) => {
+const CheckoutPage = ({ cart, loadCart }) => {
   const [deliveryOptions, setDeliveryOption] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
 
   useEffect(() => {
     const fetchCheckoutData = async () => {
-      let response = await axios.get(
+      const response = await axios.get(
         "./api/delivery-options?expand=estimatedDeliveryTime"
       );
       setDeliveryOption(response.data);
-      response = await axios.get("/api/payment-summary");
-      setPaymentSummary(response.data);
     };
 
-    fetchCheckoutData()
+    fetchCheckoutData();
   }, []);
+
+  useEffect(() => {
+    const fetchCardData = async () => {
+      const response = await axios.get("/api/payment-summary");
+      setPaymentSummary(response.data);
+    };
+    fetchCardData();
+  }, [cart]);
 
   return (
     <>
@@ -54,7 +59,11 @@ const CheckoutPage = ({ cart }) => {
         <div className="page-title">Review your order</div>
 
         <div className="checkout-grid">
-          <OrderSummary deliveryOptions={deliveryOptions} cart={cart} />
+          <OrderSummary
+            deliveryOptions={deliveryOptions}
+            cart={cart}
+            loadCart={loadCart}
+          />
           <PaymentSammary paymentSummary={paymentSummary} />
         </div>
       </div>
