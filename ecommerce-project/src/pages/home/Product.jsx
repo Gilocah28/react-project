@@ -18,7 +18,7 @@ export const Product = ({ product, loadCart }) => {
 
   const [quantity, setQuantity] = useState(1);
   return (
-    <div className="product-container">
+    <div className="product-container" data-testid="product-container">
       <div className="product-image-container">
         <img
           className="product-image"
